@@ -1,0 +1,42 @@
+package com.fiap.sparklight_api.mapper;
+
+import com.fiap.sparklight_api.dto.AparelhoDTO;
+import com.fiap.sparklight_api.model.Aparelho;
+import com.fiap.sparklight_api.model.Usuario;
+import com.fiap.sparklight_api.repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class AparelhoMapper {
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    public AparelhoDTO toDTO(Aparelho aparelho) {
+        AparelhoDTO dto = new AparelhoDTO();
+        dto.setAparelhoId(aparelho.getAparelhoId());
+        dto.setNome(aparelho.getNome());
+        dto.setPotencia(aparelho.getPotencia());
+        dto.setTempo(aparelho.getTempo());
+        dto.setPeriodo(aparelho.getPeriodo());
+        dto.setUsuarioId(aparelho.getUsuario().getUsuarioId());
+        return dto;
+    }
+
+    public Aparelho toEntity(AparelhoDTO dto) {
+        Aparelho aparelho = new Aparelho();
+        aparelho.setAparelhoId(dto.getAparelhoId());
+        aparelho.setNome(dto.getNome());
+        aparelho.setPotencia(dto.getPotencia());
+        aparelho.setTempo(dto.getTempo());
+        aparelho.setPeriodo(dto.getPeriodo());
+
+        Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        aparelho.setUsuario(usuario); // Associando o usuário encontrado ao aparelho
+        return aparelho;
+    }
+}
+
