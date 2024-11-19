@@ -1,38 +1,42 @@
 package com.fiap.sparklight_api.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "tb_item")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "tb_item")
 public class Item {
 
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_item_id")
-    @SequenceGenerator(name = "seq_item_id", sequenceName = "seq_item_id", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_historico_id")
+    @SequenceGenerator(name = "seq_historico_id", sequenceName = "seq_historico_id", allocationSize = 1)
     private Long itemId;
 
-    @Column(nullable = false)
+    @NotNull(message = "A quantidade é obrigatória.")
+    @Positive(message = "A quantidade deve ser positiva.")
     private Integer quantidade;
 
-    @Column(precision = 10, scale = 2)
-    private BigDecimal consumoMensal;
+    @PositiveOrZero(message = "O consumo mensal não pode ser negativo.")
+    private BigDecimal consumomes;
 
-    @Column(precision = 10, scale = 2)
-    private BigDecimal custoMensal;
+    @PositiveOrZero(message = "O custo mensal não pode ser negativo.")
+    private BigDecimal customensal;
 
+    @NotNull(message = "O aparelho é obrigatório.")
     @ManyToOne
-    @JoinColumn(name = "tb_aparelho_aparelho_id", nullable = false)
+    @JoinColumn(name = "tb_aparelho_aparelho_id")
     private Aparelho aparelho;
 
+    @NotNull(message = "O histórico é obrigatório.")
     @ManyToOne
-    @JoinColumn(name = "tb_historico_historico_id", nullable = false)
+    @JoinColumn(name = "tb_historico_historico_id")
     private Historico historico;
 }
+
