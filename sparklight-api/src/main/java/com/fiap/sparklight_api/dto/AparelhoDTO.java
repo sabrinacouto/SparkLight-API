@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.math.BigDecimal;
+
 @EqualsAndHashCode(callSuper=false)
 @Data
 public class AparelhoDTO extends RepresentationModel<AparelhoDTO> {
@@ -17,10 +19,10 @@ public class AparelhoDTO extends RepresentationModel<AparelhoDTO> {
     private String nome;
 
     @PositiveOrZero(message = "A potência não pode ser negativa.")
-    private Double potencia;
+    private BigDecimal potencia;
 
     @PositiveOrZero(message = "O tempo não pode ser negativo.")
-    private Double tempo;
+    private BigDecimal tempo;
 
     @NotBlank(message = "O período não pode ser vazio.")
     private String periodo;

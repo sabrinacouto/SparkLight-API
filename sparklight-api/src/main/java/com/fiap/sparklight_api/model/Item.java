@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,10 +23,10 @@ public class Item {
     private Integer quantidade;
 
     @Column(precision = 10, scale = 2)
-    private Double consumoMensal;
+    private BigDecimal consumoMensal;
 
     @Column(precision = 10, scale = 2)
-    private Double custoMensal;
+    private BigDecimal custoMensal;
 
     @ManyToOne
     @JoinColumn(name = "tb_aparelho_aparelho_id", nullable = false)

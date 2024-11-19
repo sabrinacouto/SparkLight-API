@@ -25,6 +25,10 @@ public class AparelhoMapper {
     }
 
     public Aparelho toEntity(AparelhoDTO dto) {
+        if (dto.getUsuarioId() == null) {
+            throw new IllegalArgumentException("O campo 'usuarioId' é obrigatório");
+        }
+
         Aparelho aparelho = new Aparelho();
         aparelho.setAparelhoId(dto.getAparelhoId());
         aparelho.setNome(dto.getNome());
@@ -35,7 +39,7 @@ public class AparelhoMapper {
         Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        aparelho.setUsuario(usuario); // Associando o usuário encontrado ao aparelho
+        aparelho.setUsuario(usuario);
         return aparelho;
     }
 }

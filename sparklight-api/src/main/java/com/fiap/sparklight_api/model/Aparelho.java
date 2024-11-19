@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,10 +23,10 @@ public class Aparelho {
     private String nome;
 
     @Column(precision = 10, scale = 2)
-    private Double potencia;
+    private BigDecimal potencia;
 
     @Column(precision = 10, scale = 2)
-    private Double tempo;
+    private BigDecimal tempo;
 
     @Column(length = 45)
     private String periodo;
