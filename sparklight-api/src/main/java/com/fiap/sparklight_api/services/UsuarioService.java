@@ -1,6 +1,7 @@
 package com.fiap.sparklight_api.services;
 
 import com.fiap.sparklight_api.dto.UsuarioDTO;
+import com.fiap.sparklight_api.exceptions.EmailAlreadyExistsException;
 import com.fiap.sparklight_api.mapper.UsuarioMapper;
 import com.fiap.sparklight_api.model.Usuario;
 import com.fiap.sparklight_api.repository.UsuarioRepository;
@@ -36,10 +37,16 @@ public class UsuarioService {
         if (dto.getNome() == null || dto.getEmail() == null) {
             throw new InvalidDataException("Nome e email são obrigatórios.");
         }
+
+        if (usuarioRepository.findByEmail(dto.getEmail()).isPresent()) {
+            throw new EmailAlreadyExistsException("Já existe um usuário com este e-mail.");
+        }
+
         Usuario usuario = usuarioMapper.toEntity(dto);
         Usuario savedUser = usuarioRepository.save(usuario);
         return usuarioMapper.toDTO(savedUser);
     }
+
 
     public UsuarioDTO updateUser(Long id, UsuarioDTO dto) {
         Usuario usuario = usuarioRepository.findById(id)

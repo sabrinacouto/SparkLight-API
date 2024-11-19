@@ -2,8 +2,9 @@ package com.fiap.sparklight_api.controller;
 
 import com.fiap.sparklight_api.dto.UsuarioDTO;
 import com.fiap.sparklight_api.services.UsuarioService;
-import org.springframework.hateoas.CollectionModel;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,7 +52,6 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioDTO);
     }
 
-    // Update Usuario
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioDTO> updateUsuario(@PathVariable Long id,
                                                     @Valid @RequestBody UsuarioDTO usuarioDTO) {
@@ -71,30 +71,45 @@ public class UsuarioController {
         return ResponseEntity.ok(updatedUsuario);
     }
 
-    // Delete Usuario
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
         usuarioService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-
     @GetMapping
-    public ResponseEntity<CollectionModel<EntityModel<UsuarioDTO>>> getAllUsuarios(Pageable pageable) {
+    public ResponseEntity<EntityModel<Page<UsuarioDTO>>> getAllUsuarios(Pageable pageable) {
         Page<UsuarioDTO> usuariosDTO = usuarioService.getAllUsers(pageable);
 
-        var usuarioModels = usuariosDTO.map(usuarioDTO -> {
-            var selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UsuarioController.class)
-                    .getUsuarioById(usuarioDTO.getUsuarioId())).withSelfRel();
-            var allUsuariosLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UsuarioController.class)
-                    .getAllUsuarios(pageable)).withRel("usuarios");
 
-            usuarioDTO.add(selfLink, allUsuariosLink);
+        EntityModel<Page<UsuarioDTO>> entityModel = EntityModel.of(usuariosDTO);
 
-            return EntityModel.of(usuarioDTO);
-        });
+        var selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UsuarioController.class)
+                .getAllUsuarios(pageable)).withSelfRel();
+        entityModel.add(selfLink);
 
-        return ResponseEntity.ok(CollectionModel.of(usuarioModels));
+        if (usuariosDTO.hasPrevious()) {
+            Link previousPageLink = WebMvcLinkBuilder.linkTo(
+                            WebMvcLinkBuilder.methodOn(UsuarioController.class)
+                                    .getAllUsuarios(PageRequest.of(pageable.getPageNumber() - 1, pageable.getPageSize())))
+                    .withRel("previous");
+            entityModel.add(previousPageLink);
+        }
+
+
+        if (usuariosDTO.hasNext()) {
+            Link nextPageLink = WebMvcLinkBuilder.linkTo(
+                            WebMvcLinkBuilder.methodOn(UsuarioController.class)
+                                    .getAllUsuarios(PageRequest.of(pageable.getPageNumber() + 1, pageable.getPageSize())))
+                    .withRel("next");
+            entityModel.add(nextPageLink);
+        }
+
+        var allUsuariosLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UsuarioController.class)
+                .getAllUsuarios(Pageable.unpaged())).withRel("usuarios");
+        entityModel.add(allUsuariosLink);
+
+        return ResponseEntity.ok(entityModel);
     }
 }
 

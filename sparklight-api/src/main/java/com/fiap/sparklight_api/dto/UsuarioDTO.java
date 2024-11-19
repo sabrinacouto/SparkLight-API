@@ -11,7 +11,6 @@ import org.springframework.hateoas.RepresentationModel;
 @Data
 public class UsuarioDTO extends RepresentationModel<UsuarioDTO> {
 
-    @NotNull(message = "O ID do usuário não pode ser nulo.")
     private Long usuarioId;
 
     @NotBlank(message = "O nome não pode ser vazio.")
@@ -24,7 +23,7 @@ public class UsuarioDTO extends RepresentationModel<UsuarioDTO> {
     @NotBlank(message = "O email não pode ser vazio.")
     private String email;
 
-    @NotBlank(message = "O CEP não pode ser vazio.")
+    @NotNull(message = "O CEP é obrigatório.")
     private String cep;
 
     @NotBlank(message = "A cidade não pode ser vazia.")

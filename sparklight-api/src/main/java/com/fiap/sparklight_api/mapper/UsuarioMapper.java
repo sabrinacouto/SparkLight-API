@@ -16,12 +16,13 @@ public class UsuarioMapper {
         dto.setEstado(usuario.getEstado());
         dto.setIdade(usuario.getIdade());
         dto.setGenero(usuario.getGenero());
+        dto.setSenha(usuario.getSenha());
+        dto.setCep(usuario.getCep());
         return dto;
     }
 
     public Usuario toEntity(UsuarioDTO dto) {
         Usuario usuario = new Usuario();
-        usuario.setUsuarioId(dto.getUsuarioId());
         usuario.setNome(dto.getNome());
         usuario.setSobrenome(dto.getSobrenome());
         usuario.setEmail(dto.getEmail());
@@ -29,7 +30,11 @@ public class UsuarioMapper {
         usuario.setEstado(dto.getEstado());
         usuario.setIdade(dto.getIdade());
         usuario.setGenero(dto.getGenero());
+        usuario.setSenha(dto.getSenha());
+        usuario.setCep(dto.getCep());
         return usuario;
     }
 }
+
+
 
