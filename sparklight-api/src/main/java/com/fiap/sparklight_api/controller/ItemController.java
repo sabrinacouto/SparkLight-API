@@ -68,22 +68,5 @@ public class ItemController {
         itemService.deleteItem(id);
     }
 
-    @GetMapping("/{id}/totais")
-    public EntityModel<Map<String, BigDecimal>> getConsumoECustoTotais(@PathVariable Long id) {
-        BigDecimal consumoTotal = itemService.calcularConsumoTotal(id);
-        BigDecimal custoTotal = itemService.calcularCustoTotal(id);
-
-        Map<String, BigDecimal> totais = Map.of(
-                "consumoTotal", consumoTotal,
-                "custoTotal", custoTotal
-        );
-
-
-        EntityModel<Map<String, BigDecimal>> totaisModel = EntityModel.of(totais);
-        Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ItemController.class).getConsumoECustoTotais(id)).withSelfRel();
-        totaisModel.add(selfLink);
-
-        return totaisModel;
-    }
 }
 
