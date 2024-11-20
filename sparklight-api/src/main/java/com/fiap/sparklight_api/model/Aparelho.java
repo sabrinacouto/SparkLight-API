@@ -34,4 +34,19 @@ public class Aparelho {
     @ManyToOne
     @JoinColumn(name = "tb_usuario_usuario_id", nullable = false)
     private Usuario usuario;
+
+    public BigDecimal calcularConsumoMensal() {
+        if ("KWh".equals(periodo)) {
+            return (potencia.multiply(tempo)).multiply(BigDecimal.valueOf(30)); // 30 dias no mês
+        } else {
+            // Lógica para outros períodos se necessário
+            return BigDecimal.ZERO;
+        }
+    }
+
+    public BigDecimal calcularCustoMensal(BigDecimal valorKWh) {
+        BigDecimal consumoMensal = calcularConsumoMensal();
+        return consumoMensal.multiply(valorKWh);
+    }
+
 }

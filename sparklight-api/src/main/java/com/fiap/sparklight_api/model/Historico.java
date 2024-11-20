@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -30,18 +31,36 @@ public class Historico {
 
     @NotNull(message = "O consumo do mês é obrigatório.")
     @PositiveOrZero(message = "O consumo não pode ser negativo.")
-    private Double consumomes;
+    private BigDecimal consumomes;
 
     @NotNull(message = "O custo do mês é obrigatório.")
     @PositiveOrZero(message = "O custo não pode ser negativo.")
-    private Double customes;
+    private BigDecimal customes;
 
     @NotNull(message = "O usuário é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "tb_usuario_usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "historico", cascade = CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "tb_historico_historico_id")
     private List<Item> itens;
+
+    public void calcularConsumoECusto() {
+        BigDecimal totalConsumo = BigDecimal.ZERO;
+        BigDecimal totalCusto = BigDecimal.ZERO;
+
+
+        for (Item item : itens) {
+            item.calcularConsumoECusto();
+            totalConsumo = totalConsumo.add(item.getConsumomes());
+            totalCusto = totalCusto.add(item.getCustomensal());
+        }
+
+
+        this.consumomes = totalConsumo;
+        this.customes = totalCusto;
+    }
+
 }
 

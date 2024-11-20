@@ -18,7 +18,6 @@ public class HistoricoMapper {
         dto.setConsumomes(historico.getConsumomes());
         dto.setCustomes(historico.getCustomes());
         dto.setUsuarioId(historico.getUsuario().getUsuarioId());
-        dto.setItens(historico.getItens().stream().map(item -> new ItemMapper().toDTO(item)).collect(Collectors.toList()));
         return dto;
     }
 

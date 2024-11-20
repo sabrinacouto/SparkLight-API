@@ -25,7 +25,6 @@ public class AparelhoController {
         return aparelhoService.getAllAparelhos(pageable);
     }
 
-
     @GetMapping("/{id}")
     public EntityModel<AparelhoDTO> getAparelhoById(@PathVariable Long id) {
         AparelhoDTO aparelhoDTO = aparelhoService.getAparelhoById(id);
@@ -51,7 +50,7 @@ public class AparelhoController {
     public EntityModel<AparelhoDTO> updateAparelho(@PathVariable Long id, @RequestBody @Valid AparelhoDTO dto) {
         AparelhoDTO updatedAparelho = aparelhoService.updateAparelho(id, dto);
 
-        // Adicionando links HATEOAS
+
         EntityModel<AparelhoDTO> aparelhoModel = EntityModel.of(updatedAparelho);
         Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AparelhoController.class).getAparelhoById(id)).withSelfRel();
         aparelhoModel.add(selfLink);

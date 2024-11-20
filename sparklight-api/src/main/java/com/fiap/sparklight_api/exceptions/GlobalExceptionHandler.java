@@ -38,5 +38,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
+    @ExceptionHandler(HistoricoNotFoundException.class)
+    public ResponseEntity<String> handleHistoricoNotFoundException(HistoricoNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 }
 

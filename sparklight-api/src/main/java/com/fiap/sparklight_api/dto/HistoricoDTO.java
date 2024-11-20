@@ -4,6 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -23,13 +24,12 @@ public class HistoricoDTO extends RepresentationModel<HistoricoDTO> {
     @Max(value = 2100, message = "O ano deve ser no máximo 2100.")
     private Integer ano;
 
-    private Double consumomes;
+    private BigDecimal consumomes;
 
-    private Double customes;
+    private BigDecimal customes;
 
     @NotNull(message = "O usuário é obrigatório.")
     private Long usuarioId;
 
-    private List<ItemDTO> itens;
 }
 
