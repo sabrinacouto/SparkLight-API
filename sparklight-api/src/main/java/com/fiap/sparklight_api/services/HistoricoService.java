@@ -59,8 +59,8 @@ public class HistoricoService {
 
         historico.setMes(dto.getMes());
         historico.setAno(dto.getAno());
-        historico.setConsumomes(dto.getConsumomes());
-        historico.setCustomes(dto.getCustomes());
+        historico.setConsumoMes(dto.getConsumoMes());
+        historico.setCustoMes(dto.getCustoMes());
 
         try {
             Historico updatedHistorico = historicoRepository.save(historico);

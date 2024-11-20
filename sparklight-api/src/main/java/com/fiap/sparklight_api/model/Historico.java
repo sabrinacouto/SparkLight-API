@@ -19,48 +19,34 @@ public class Historico {
     @SequenceGenerator(name = "seq_historico_id", sequenceName = "seq_historico_id", allocationSize = 1)
     private Long historicoId;
 
-    @NotNull(message = "O mês é obrigatório.")
-    @Min(value = 1, message = "O mês deve ser no mínimo 1.")
-    @Max(value = 12, message = "O mês deve ser no máximo 12.")
+    @Column(nullable = false)
     private Integer mes;
 
-    @NotNull(message = "O ano é obrigatório.")
-    @Min(value = 1900, message = "O ano deve ser no mínimo 1900.")
-    @Max(value = 2100, message = "O ano deve ser no máximo 2100.")
+    @Column(nullable = false)
     private Integer ano;
 
-    @NotNull(message = "O consumo do mês é obrigatório.")
-    @PositiveOrZero(message = "O consumo não pode ser negativo.")
-    private BigDecimal consumomes;
+    @Column(name = "consumomes", nullable = false)
+    private BigDecimal consumoMes;
 
-    @NotNull(message = "O custo do mês é obrigatório.")
-    @PositiveOrZero(message = "O custo não pode ser negativo.")
-    private BigDecimal customes;
+    @Column(name = "customes", nullable = false)
+    private BigDecimal custoMes;
 
     @NotNull(message = "O usuário é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "tb_usuario_usuario_id")
     private Usuario usuario;
 
-    @OneToMany
-    @JoinColumn(name = "tb_historico_historico_id")
+    @OneToMany(mappedBy = "historico", cascade = CascadeType.ALL)
     private List<Item> itens;
 
-    public void calcularConsumoECusto() {
-        BigDecimal totalConsumo = BigDecimal.ZERO;
-        BigDecimal totalCusto = BigDecimal.ZERO;
-
+    public void calcularTotais(BigDecimal valorKWh) {
+        this.consumoMes = BigDecimal.ZERO;
+        this.custoMes = BigDecimal.ZERO;
 
         for (Item item : itens) {
-            item.calcularConsumoECusto();
-            totalConsumo = totalConsumo.add(item.getConsumomes());
-            totalCusto = totalCusto.add(item.getCustomensal());
+            item.calcularValores(valorKWh);
+            this.consumoMes = this.consumoMes.add(item.getConsumoMes());
+            this.custoMes = this.custoMes.add(item.getCustoMensal());
         }
-
-
-        this.consumomes = totalConsumo;
-        this.customes = totalCusto;
     }
-
 }
-

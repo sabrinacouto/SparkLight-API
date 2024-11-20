@@ -7,6 +7,7 @@ import org.springframework.hateoas.RepresentationModel;
 import java.math.BigDecimal;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper=false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,9 +25,9 @@ public class HistoricoDTO extends RepresentationModel<HistoricoDTO> {
     @Max(value = 2100, message = "O ano deve ser no máximo 2100.")
     private Integer ano;
 
-    private BigDecimal consumomes;
+    private BigDecimal consumoMes;
 
-    private BigDecimal customes;
+    private BigDecimal custoMes;
 
     @NotNull(message = "O usuário é obrigatório.")
     private Long usuarioId;

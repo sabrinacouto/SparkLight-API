@@ -7,6 +7,8 @@ import com.fiap.sparklight_api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Component
 public class AparelhoMapper {
 
@@ -21,6 +23,10 @@ public class AparelhoMapper {
         dto.setTempo(aparelho.getTempo());
         dto.setPeriodo(aparelho.getPeriodo());
         dto.setUsuarioId(aparelho.getUsuario().getUsuarioId());
+
+        dto.setConsumoMensal(aparelho.calcularConsumoMensal());
+        dto.setCustoMensal(aparelho.calcularCustoMensal(BigDecimal.valueOf(0.80)));
+
         return dto;
     }
 

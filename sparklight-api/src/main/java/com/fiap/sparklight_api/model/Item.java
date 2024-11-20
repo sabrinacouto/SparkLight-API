@@ -7,11 +7,11 @@ import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "tb_item")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table(name = "tb_item")
 public class Item {
 
     @Id
@@ -19,14 +19,14 @@ public class Item {
     @SequenceGenerator(name = "seq_item_id", sequenceName = "seq_item_id", allocationSize = 1)
     private Long itemId;
 
-    @Column
+    @Column(nullable = false)
     private Integer quantidade;
 
     @Column
-    private BigDecimal consumomes;
+    private BigDecimal consumoMes;
 
     @Column
-    private BigDecimal customensal;
+    private BigDecimal custoMensal;
 
     @ManyToOne
     @JoinColumn(name = "tb_aparelho_aparelho_id", nullable = false)
@@ -36,14 +36,20 @@ public class Item {
     @JoinColumn(name = "tb_historico_historico_id", nullable = false)
     private Historico historico;
 
-    public void calcularConsumoECusto() {
+    public void calcularValores(BigDecimal valorKWh) {
         if (aparelho != null) {
 
-            BigDecimal consumo = aparelho.calcularConsumoMensal();
-            BigDecimal custo = aparelho.calcularCustoMensal(BigDecimal.valueOf(0.60));
+            // Cálculo de consumo mensal individual do aparelho
+            BigDecimal consumoIndividual = aparelho.calcularConsumoMensal();
 
-            this.consumomes = consumo.multiply(BigDecimal.valueOf(quantidade));
-            this.customensal = custo.multiply(BigDecimal.valueOf(quantidade));
+            // Cálculo de custo mensal individual do aparelho
+            BigDecimal custoIndividual = consumoIndividual.multiply(valorKWh);
+
+            // Cálculo do consumo total considerando a quantidade de aparelhos
+            this.consumoMes = consumoIndividual.multiply(BigDecimal.valueOf(quantidade));
+
+            // Cálculo do custo total considerando a quantidade de aparelhos
+            this.custoMensal = custoIndividual.multiply(BigDecimal.valueOf(quantidade));
         }
     }
 }

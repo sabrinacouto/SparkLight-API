@@ -29,5 +29,8 @@ public class AparelhoDTO extends RepresentationModel<AparelhoDTO> {
 
     @NotNull(message = "O usuário é obrigatório.")
     private Long usuarioId;
+
+    private BigDecimal consumoMensal;
+    private BigDecimal custoMensal;
 }
 

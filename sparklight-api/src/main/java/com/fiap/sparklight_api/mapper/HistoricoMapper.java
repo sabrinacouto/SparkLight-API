@@ -15,8 +15,8 @@ public class HistoricoMapper {
         dto.setHistoricoId(historico.getHistoricoId());
         dto.setMes(historico.getMes());
         dto.setAno(historico.getAno());
-        dto.setConsumomes(historico.getConsumomes());
-        dto.setCustomes(historico.getCustomes());
+        dto.setConsumoMes(historico.getConsumoMes());
+        dto.setCustoMes(historico.getCustoMes());
         dto.setUsuarioId(historico.getUsuario().getUsuarioId());
         return dto;
     }
@@ -26,8 +26,8 @@ public class HistoricoMapper {
         historico.setHistoricoId(dto.getHistoricoId());
         historico.setMes(dto.getMes());
         historico.setAno(dto.getAno());
-        historico.setConsumomes(dto.getConsumomes());
-        historico.setCustomes(dto.getCustomes());
+        historico.setConsumoMes(dto.getConsumoMes());
+        historico.setCustoMes(dto.getCustoMes());
         historico.setUsuario(usuario);
         return historico;
     }

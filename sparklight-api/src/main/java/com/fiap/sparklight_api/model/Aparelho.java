@@ -36,17 +36,13 @@ public class Aparelho {
     private Usuario usuario;
 
     public BigDecimal calcularConsumoMensal() {
-        if ("KWh".equals(periodo)) {
-            return (potencia.multiply(tempo)).multiply(BigDecimal.valueOf(30)); // 30 dias no mês
-        } else {
-            // Lógica para outros períodos se necessário
-            return BigDecimal.ZERO;
-        }
+
+        return potencia.multiply(new BigDecimal(30));
     }
 
     public BigDecimal calcularCustoMensal(BigDecimal valorKWh) {
-        BigDecimal consumoMensal = calcularConsumoMensal();
-        return consumoMensal.multiply(valorKWh);
+
+        return calcularConsumoMensal().multiply(valorKWh);
     }
 
 }
