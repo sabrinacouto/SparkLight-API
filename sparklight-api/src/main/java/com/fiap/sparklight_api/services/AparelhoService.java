@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import jakarta.validation.Valid;
 
 @Service
 public class AparelhoService {
@@ -36,17 +35,21 @@ public class AparelhoService {
         return aparelhoMapper.toDTO(aparelho);
     }
 
-    public AparelhoDTO createAparelho(@Valid AparelhoDTO dto) {
+    public AparelhoDTO createAparelho(AparelhoDTO dto) {
         if (!usuarioRepository.existsById(dto.getUsuarioId())) {
             throw new AparelhoNotFoundException("Usuário não encontrado.");
         }
 
         Aparelho aparelho = aparelhoMapper.toEntity(dto);
-        Aparelho savedAparelho = aparelhoRepository.save(aparelho);
-        return aparelhoMapper.toDTO(savedAparelho);
+        try {
+            Aparelho savedAparelho = aparelhoRepository.save(aparelho);
+            return aparelhoMapper.toDTO(savedAparelho);
+        } catch (Exception e) {
+            throw new DatabaseException("Erro ao criar o aparelho: " + e.getMessage());
+        }
     }
 
-    public AparelhoDTO updateAparelho(Long id, @Valid AparelhoDTO dto) {
+    public AparelhoDTO updateAparelho(Long id, AparelhoDTO dto) {
         Aparelho aparelho = aparelhoRepository.findById(id)
                 .orElseThrow(() -> new AparelhoNotFoundException(id));
 
@@ -66,7 +69,12 @@ public class AparelhoService {
     public void deleteAparelho(Long id) {
         Aparelho aparelho = aparelhoRepository.findById(id)
                 .orElseThrow(() -> new AparelhoNotFoundException(id));
-        aparelhoRepository.delete(aparelho);
+
+        try {
+            aparelhoRepository.delete(aparelho);
+        } catch (Exception e) {
+            throw new DatabaseException("Erro ao excluir o aparelho: " + e.getMessage());
+        }
     }
 }
 

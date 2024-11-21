@@ -6,6 +6,8 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.hateoas.RepresentationModel;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fiap.sparklight_api.utils.BigDecimalFormatter;
 
 import java.math.BigDecimal;
 
@@ -30,7 +32,10 @@ public class AparelhoDTO extends RepresentationModel<AparelhoDTO> {
     @NotNull(message = "O usuário é obrigatório.")
     private Long usuarioId;
 
+    @JsonSerialize(using = BigDecimalFormatter.class)
     private BigDecimal consumoMensal;
+
+    @JsonSerialize(using = BigDecimalFormatter.class)
     private BigDecimal custoMensal;
 }
 

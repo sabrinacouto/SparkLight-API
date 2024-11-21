@@ -1,17 +1,18 @@
 package com.fiap.sparklight_api.dto;
 
+import com.fiap.sparklight_api.model.Historico;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @EqualsAndHashCode(callSuper=false)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class HistoricoDTO extends RepresentationModel<HistoricoDTO> {
+
 
     private Long historicoId;
 
@@ -31,6 +32,15 @@ public class HistoricoDTO extends RepresentationModel<HistoricoDTO> {
 
     @NotNull(message = "O usuário é obrigatório.")
     private Long usuarioId;
+
+    public HistoricoDTO(Historico historico) {
+        this.historicoId = historico.getHistoricoId();
+        this.ano = historico.getAno();
+        this.consumoMes = historico.getConsumoMes();
+        this.custoMes = historico.getCustoMes();
+        this.mes = historico.getMes();
+        this.usuarioId = historico.getUsuario().getUsuarioId(); // Ajuste conforme necessário
+    }
 
 }
 

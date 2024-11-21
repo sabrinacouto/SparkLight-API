@@ -9,6 +9,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
@@ -58,6 +59,18 @@ public class HistoricoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteHistorico(@PathVariable Long id) {
         historicoService.deleteHistorico(id);
+    }
+
+    @GetMapping("/historico/{usuarioId}/calculo")
+    public ResponseEntity<EntityModel<HistoricoDTO>> calcularConsumoECusto(@PathVariable Long usuarioId, Pageable pageable) {
+        HistoricoDTO resultado = historicoService.calcularConsumoECusto(usuarioId, pageable);
+
+        EntityModel<HistoricoDTO> historicoModel = EntityModel.of(resultado);
+        Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(HistoricoController.class)
+                .calcularConsumoECusto(usuarioId, pageable)).withSelfRel();
+        historicoModel.add(selfLink);
+
+        return ResponseEntity.ok(historicoModel);
     }
 }
 

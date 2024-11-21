@@ -39,16 +39,14 @@ public class Item {
     public void calcularValores(BigDecimal valorKWh) {
         if (aparelho != null) {
 
-            // Cálculo de consumo mensal individual do aparelho
+
             BigDecimal consumoIndividual = aparelho.calcularConsumoMensal();
 
-            // Cálculo de custo mensal individual do aparelho
+
             BigDecimal custoIndividual = consumoIndividual.multiply(valorKWh);
 
-            // Cálculo do consumo total considerando a quantidade de aparelhos
             this.consumoMes = consumoIndividual.multiply(BigDecimal.valueOf(quantidade));
 
-            // Cálculo do custo total considerando a quantidade de aparelhos
             this.custoMensal = custoIndividual.multiply(BigDecimal.valueOf(quantidade));
         }
     }

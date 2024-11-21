@@ -5,7 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.List;
+
 
 @Entity
 @Table(name = "tb_historico")
@@ -17,6 +17,7 @@ public class Historico {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_historico_id")
     @SequenceGenerator(name = "seq_historico_id", sequenceName = "seq_historico_id", allocationSize = 1)
+    @Column(name = "historico_id")
     private Long historicoId;
 
     @Column(nullable = false)
@@ -32,21 +33,9 @@ public class Historico {
     private BigDecimal custoMes;
 
     @NotNull(message = "O usuário é obrigatório.")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tb_usuario_usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "historico", cascade = CascadeType.ALL)
-    private List<Item> itens;
 
-    public void calcularTotais(BigDecimal valorKWh) {
-        this.consumoMes = BigDecimal.ZERO;
-        this.custoMes = BigDecimal.ZERO;
-
-        for (Item item : itens) {
-            item.calcularValores(valorKWh);
-            this.consumoMes = this.consumoMes.add(item.getConsumoMes());
-            this.custoMes = this.custoMes.add(item.getCustoMensal());
-        }
-    }
 }

@@ -20,6 +20,7 @@ public class ItemMapper {
     @Autowired
     private HistoricoRepository historicoRepository;
 
+
     public ItemDTO toDTO(Item item) {
         ItemDTO dto = new ItemDTO();
         dto.setItemId(item.getItemId());
@@ -27,18 +28,20 @@ public class ItemMapper {
 
         Aparelho aparelho = item.getAparelho();
         if (aparelho != null) {
-            BigDecimal valorKWh = new BigDecimal("0.80"); // Exemplo de valor fixo
+
+            BigDecimal tarifaKWh = new BigDecimal("0.50");
+
 
             BigDecimal consumoMensal = aparelho.calcularConsumoMensal();
-            BigDecimal custoMensal = aparelho.calcularCustoMensal(valorKWh);
 
-            // Adicionando log para verificar os valores de cálculo
-            System.out.println("Consumo mensal: " + consumoMensal);
-            System.out.println("Custo mensal: " + custoMensal);
+
+            BigDecimal custoMensal = consumoMensal.multiply(tarifaKWh);
+
 
             dto.setConsumoMes(consumoMensal.multiply(BigDecimal.valueOf(item.getQuantidade())));
             dto.setCustoMensal(custoMensal.multiply(BigDecimal.valueOf(item.getQuantidade())));
         }
+
 
         if (item.getAparelho() != null) {
             dto.setAparelhoId(item.getAparelho().getAparelhoId());
@@ -50,7 +53,7 @@ public class ItemMapper {
         return dto;
     }
 
-    // Convertendo o DTO de volta para a entidade Item
+
     public Item toEntity(ItemDTO dto, Aparelho aparelho, Historico historico) {
         Item item = new Item();
         item.setItemId(dto.getItemId());
@@ -61,6 +64,5 @@ public class ItemMapper {
 
         return item;
     }
-
-
 }
+

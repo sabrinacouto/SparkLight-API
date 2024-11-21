@@ -25,7 +25,7 @@ public class AparelhoMapper {
         dto.setUsuarioId(aparelho.getUsuario().getUsuarioId());
 
         dto.setConsumoMensal(aparelho.calcularConsumoMensal());
-        dto.setCustoMensal(aparelho.calcularCustoMensal(BigDecimal.valueOf(0.80)));
+        dto.setCustoMensal(aparelho.calcularCustoMensal(BigDecimal.valueOf(0.50)));
 
         return dto;
     }

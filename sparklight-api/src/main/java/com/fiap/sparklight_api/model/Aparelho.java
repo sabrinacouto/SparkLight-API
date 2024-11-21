@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Data
 @NoArgsConstructor
@@ -35,14 +36,21 @@ public class Aparelho {
     @JoinColumn(name = "tb_usuario_usuario_id", nullable = false)
     private Usuario usuario;
 
+
+
     public BigDecimal calcularConsumoMensal() {
 
-        return potencia.multiply(new BigDecimal(30));
+        BigDecimal potenciaKW = this.potencia.divide(new BigDecimal(1000), 2, RoundingMode.HALF_UP);
+
+
+        BigDecimal consumoMensal = potenciaKW.multiply(this.tempo).multiply(new BigDecimal(30));
+
+        return consumoMensal;
     }
 
     public BigDecimal calcularCustoMensal(BigDecimal valorKWh) {
 
-        return calcularConsumoMensal().multiply(valorKWh);
+        BigDecimal consumoMensal = calcularConsumoMensal();
+        return consumoMensal.multiply(valorKWh);
     }
-
 }

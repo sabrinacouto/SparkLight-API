@@ -5,7 +5,6 @@ import com.fiap.sparklight_api.model.Historico;
 import com.fiap.sparklight_api.model.Usuario;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
 
 @Component
 public class HistoricoMapper {
@@ -22,13 +21,19 @@ public class HistoricoMapper {
     }
 
     public Historico toEntity(HistoricoDTO dto, Usuario usuario) {
+        if (usuario == null) {
+            throw new IllegalArgumentException("Usuário não pode ser nulo ao criar histórico.");
+        }
+
         Historico historico = new Historico();
         historico.setHistoricoId(dto.getHistoricoId());
         historico.setMes(dto.getMes());
         historico.setAno(dto.getAno());
         historico.setConsumoMes(dto.getConsumoMes());
         historico.setCustoMes(dto.getCustoMes());
-        historico.setUsuario(usuario);
+        historico.setUsuario(usuario);  // Definindo o usuário associado
         return historico;
     }
 }
+
+
