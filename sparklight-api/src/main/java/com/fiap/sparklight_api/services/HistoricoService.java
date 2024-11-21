@@ -39,7 +39,7 @@ public class HistoricoService {
         BigDecimal consumoMes = BigDecimal.ZERO;
         BigDecimal custoMes = BigDecimal.ZERO;
 
-        // Definindo a tarifa de kWh (hipotética)
+
         BigDecimal tarifaKWh = new BigDecimal(0.50);
 
         List<Aparelho> aparelhos = aparelhosPage.getContent();
@@ -48,7 +48,7 @@ public class HistoricoService {
             custoMes = custoMes.add(aparelho.calcularCustoMensal(tarifaKWh));
         }
 
-        // Preparando o DTO com os valores calculados
+
         HistoricoDTO historicoDTO = new HistoricoDTO();
         historicoDTO.setConsumoMes(consumoMes);
         historicoDTO.setCustoMes(custoMes);
@@ -57,13 +57,13 @@ public class HistoricoService {
         return historicoDTO;
     }
 
-    // Método para obter todos os históricos com paginação
+
     public Page<HistoricoDTO> getAllHistoricos(Pageable pageable) {
         Page<Historico> historicos = historicoRepository.findAll(pageable);
         return historicos.map(historicoMapper::toDTO);
     }
 
-    // Método para obter um histórico específico por ID
+
     public HistoricoDTO getHistoricoById(Long id) {
         Historico historico = historicoRepository.findById(id)
                 .orElseThrow(() -> new HistoricoNotFoundException(id));
@@ -81,7 +81,7 @@ public class HistoricoService {
             throw new InvalidDataException("Usuário é obrigatório.");
         }
 
-        // Verificando se o usuário existe
+
         usuarioRepository.findById(dto.getUsuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
@@ -91,30 +91,29 @@ public class HistoricoService {
         Historico historico = historicoMapper.toEntity(dto, usuario);
         System.out.println("Salvando o histórico: " + historico);
 
-        // Persistindo o histórico
+
         Historico savedHistorico = historicoRepository.save(historico);
 
-        // Retornando o DTO com o histórico salvo
+
         return historicoMapper.toDTO(savedHistorico);
     }
 
-    // Método para atualizar um histórico existente
+
     public HistoricoDTO updateHistorico(Long id, HistoricoDTO dto) {
         Historico historico = historicoRepository.findById(id)
                 .orElseThrow(() -> new HistoricoNotFoundException(id));
 
-        // Validando os dados de entrada
         if (dto.getMes() == null || dto.getAno() == null) {
             throw new InvalidDataException("Mês e ano são obrigatórios.");
         }
 
-        // Atualizando os dados do histórico
+
         historico.setMes(dto.getMes());
         historico.setAno(dto.getAno());
         historico.setConsumoMes(dto.getConsumoMes());
         historico.setCustoMes(dto.getCustoMes());
 
-        // Persistindo a atualização
+
         try {
             Historico updatedHistorico = historicoRepository.save(historico);
             return historicoMapper.toDTO(updatedHistorico);
@@ -123,7 +122,7 @@ public class HistoricoService {
         }
     }
 
-    // Método para excluir um histórico
+
     public void deleteHistorico(Long id) {
         Historico historico = historicoRepository.findById(id)
                 .orElseThrow(() -> new HistoricoNotFoundException(id));

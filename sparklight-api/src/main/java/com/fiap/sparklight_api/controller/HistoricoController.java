@@ -119,18 +119,18 @@ public class HistoricoController {
     public ResponseEntity<EntityModel<Map<String, BigDecimal>>> calcularConsumoECusto(
             @PathVariable Long usuarioId, Pageable pageable) {
 
-        // Chama o serviço para calcular o consumo e custo
+
         HistoricoDTO resultado = historicoService.calcularConsumoECusto(usuarioId, pageable);
 
-        // Cria um Map com os valores de consumoMes e custoMes
+
         Map<String, BigDecimal> response = new HashMap<>();
         response.put("consumoMes", resultado.getConsumoMes());
         response.put("custoMes", resultado.getCustoMes());
 
-        // Cria o EntityModel com o Map contendo apenas os valores desejados
+
         EntityModel<Map<String, BigDecimal>> historicoModel = EntityModel.of(response);
 
-        // Adiciona o link self para o recurso
+
         Link selfLink = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(HistoricoController.class)
                 .calcularConsumoECusto(usuarioId, pageable)).withSelfRel();
         historicoModel.add(selfLink);

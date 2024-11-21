@@ -1,5 +1,7 @@
 package com.fiap.sparklight_api.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fiap.sparklight_api.utils.BigDecimalFormatter;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
@@ -19,8 +21,10 @@ public class ItemDTO extends RepresentationModel<ItemDTO> {
     @Positive(message = "A quantidade deve ser positiva.")
     private Integer quantidade;
 
+    @JsonSerialize(using = BigDecimalFormatter.class)
     private BigDecimal consumoMes;
 
+    @JsonSerialize(using = BigDecimalFormatter.class)
     private BigDecimal custoMensal;
 
     @NotNull(message = "O aparelho é obrigatório.")
