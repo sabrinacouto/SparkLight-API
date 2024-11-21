@@ -3,7 +3,8 @@ package com.fiap.sparklight_api.dto;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
-
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper=false)

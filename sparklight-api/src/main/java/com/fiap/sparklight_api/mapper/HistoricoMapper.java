@@ -31,7 +31,7 @@ public class HistoricoMapper {
         historico.setAno(dto.getAno());
         historico.setConsumoMes(dto.getConsumoMes());
         historico.setCustoMes(dto.getCustoMes());
-        historico.setUsuario(usuario);  // Definindo o usuário associado
+        historico.setUsuario(usuario);
         return historico;
     }
 }
