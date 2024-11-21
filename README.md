@@ -48,6 +48,13 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
     spring.datasource.username=SEU_USUARIO
     spring.datasource.password=SUA_SENHA
     ```
+3. Configurar o Projeto no IntelliJ IDEA
+<ul>
+  <li>Selecione a opção "Open" e navegue até o diretório do projeto SparkLight clonado.</li>
+  <li>Em Project Structure garanta que o SDK esteja para o Java 17.</li>
+  <li>Verifique no IntelliJ se a aba do Gradle está presente na barra lateral.</li>
+  <li>Caso o projeto não seja automaticamente reconhecido como Gradle, abra o arquivo build.gradle e aceite a importação do Gradle quando o IntelliJ perguntar.</li>
+</ul>
 
 Agora o servidor estará disponível em `http://localhost:8080`. 🎉
 
