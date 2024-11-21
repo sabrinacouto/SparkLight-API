@@ -89,7 +89,7 @@ Agora o servidor estará disponível em `http://localhost:8080`. 🎉
 
 ---
 
-### Item 👤
+### Item 👩‍💻
 
 | Método | URL                         | Descrição               |
 |--------|-----------------------------|-------------------------|
