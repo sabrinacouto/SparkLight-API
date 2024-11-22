@@ -14,34 +14,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Java version
-        uses: actions/setup-java@v1
+
+      # Configura o Gradle
+      - name: Set up Gradle
+        uses: gradle/wrapper-validation-action@v1
         with:
-          java-version: '17'
-      - name: Build with Maven
-        run: mvn clean install
+          gradle-version: '7.4.2' 
+
+      - name: Build with Gradle
+        run: ./gradlew build  
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: java-app
-          path: '${{ github.workspace }}/target/*.war'  # Ajuste para WAR
-          
+          name: war-app
+          path: build/libs/*.war  
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: java-app
+          name: war-app
+
+      # Faz o deploy no Azure Web App
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'SparkLight'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6E6CAC72FBC9455C956B8160BFE001C9 }}
+          app-name: 'SparkLight'  # Nome do seu Web App no Azure
+          slot-name: 'Production'  # Se você usar slots de produção
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}  
           package: '*.war'  
