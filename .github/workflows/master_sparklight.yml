@@ -12,10 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Verifica se o Gradle Wrapper está presente
+      - name: Verify Gradle Wrapper
+        run: |
+          ls -al gradlew
+          ls -al gradle/wrapper
 
-      - name: Set up Gradle
-        uses: gradle/wrapper-validation-action@v1
+      # Torna o gradlew executável, caso necessário
+      - name: Make Gradle Wrapper executable
+        run: chmod +x gradlew
 
+      # Executa o build com o Gradle Wrapper
       - name: Build with Gradle
         run: ./gradlew build  
 
@@ -38,7 +45,6 @@ jobs:
         with:
           name: war-app
 
-      # Faz o deploy no Azure Web App
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
