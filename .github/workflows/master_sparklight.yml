@@ -12,21 +12,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Verifica se o Gradle Wrapper está presente
+
       - name: Verify Gradle Wrapper
         run: |
           ls -al gradlew
           ls -al gradle/wrapper
 
-      # Torna o gradlew executável, caso necessário
       - name: Make Gradle Wrapper executable
         run: chmod +x gradlew
 
-      # Executa o build com o Gradle Wrapper
+
       - name: Build with Gradle
         run: ./gradlew build  
 
-      # Verifica o conteúdo da pasta libs para garantir que o WAR foi gerado
+
       - name: List build directory
         run: ls -al build/libs/
 
