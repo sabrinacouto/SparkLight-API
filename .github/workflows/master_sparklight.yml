@@ -1,0 +1,55 @@
+name: Build and deploy WAR app to Azure Web App - SparkLight
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Verifica se o Gradle Wrapper está presente
+      - name: Verify Gradle Wrapper
+        run: |
+          ls -al gradlew
+          ls -al gradle/wrapper
+
+      # Torna o gradlew executável, caso necessário
+      - name: Make Gradle Wrapper executable
+        run: chmod +x gradlew
+
+      # Executa o build com o Gradle Wrapper
+      - name: Build with Gradle
+        run: ./gradlew build  
+
+      # Verifica o conteúdo da pasta libs para garantir que o WAR foi gerado
+      - name: List build directory
+        run: ls -al build/libs/
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: war-app
+          path: build/libs/*.war  
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: war-app
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'SparkLight'  
+          slot-name: 'Production'  
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6E6CAC72FBC9455C956B8160BFE001C9 }}
+          package: 'war-app/*.war'   
+  
