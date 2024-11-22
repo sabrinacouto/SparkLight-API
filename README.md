@@ -7,13 +7,12 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
 ## Índice 📋
 - [Recursos](#recursos)
 - [Desenvolvedores](#desenvolvedores)
-<<<<<<< HEAD
-=======
+
 - [Imagens Explicativas](#imagens-explicativas)
   - [Telas da aplicação](#telas-da-aplicacao)
   - [Diagrama de classes](#diagrama-de-classes)
   - [Macro do Projeto](#macro)
->>>>>>> 467afe1324960b321e6c7dcf3383ba36981613ca
+
 - [Como Rodar o Projeto](#como-rodar-o-projeto)
 - [Endpoints](#endpoints)
   - [Histórico](#histórico)
@@ -21,13 +20,10 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
   - [Usuário](#usuário)
   - [Item](#item)
   - [Exemplos de JSON](#exemplos-de-json)
-<<<<<<< HEAD
 - [Imagens Explicativas](#imagens-explicativas)
   - [Telas da aplicação](#telas-da-aplicacao)
   - [Diagrama de classes](#diagrama-de-classes)
   - [Diagrama Macro](#diagrama-macro)
-=======
->>>>>>> 467afe1324960b321e6c7dcf3383ba36981613ca
 - [Vídeo de explicação do funcionamento do software](#video-de-explicação-do-software)
 - [Vídeo Pitch](#video-pitch)
 
@@ -70,8 +66,6 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
 
 ![diagramJava](https://media.discordapp.net/attachments/1297737020248031284/1309576636168929422/Diagrama_sem_nome.drawio_1.png?ex=674215c8&is=6740c448&hm=b190aebc56cb6f1306a9f8417b9415d9b22e584ad03f899c9d9f73e10283ed0c&=&format=webp&quality=lossless&width=838&height=438)
   
-
->>>>>>> 467afe1324960b321e6c7dcf3383ba36981613ca
 ## Como Rodar o Projeto 🖥️
 
 ### Passos
@@ -246,5 +240,6 @@ O json do `Usuário` segue o padrão de um cadastro comum.
 https://youtu.be/kVD9L8fzxC4
 
 ## Vídeo Pitch
+https://www.youtube.com/watch?v=0dKvL1Tfhl8
 
 
