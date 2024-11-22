@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy WAR app to Azure Web App - SparkLight
 
 on:
@@ -15,14 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Configura o Gradle
+
       - name: Set up Gradle
         uses: gradle/wrapper-validation-action@v1
-        with:
-          gradle-version: '7.4.2' 
 
       - name: Build with Gradle
         run: ./gradlew build  
+
+      # Verifica o conteúdo da pasta libs para garantir que o WAR foi gerado
+      - name: List build directory
+        run: ls -al build/libs/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -43,7 +42,8 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'SparkLight'  # Nome do seu Web App no Azure
-          slot-name: 'Production'  # Se você usar slots de produção
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}  
-          package: '*.war'  
+          app-name: 'SparkLight'  
+          slot-name: 'Production'  
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6E6CAC72FBC9455C956B8160BFE001C9 }}
+          package: 'war-app/*.war'   
+  
