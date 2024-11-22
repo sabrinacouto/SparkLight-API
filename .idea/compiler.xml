@@ -11,5 +11,10 @@
         <module name="sparklight-api.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sparklight-api" target="17" />
+      <module name="sparklight-api.main" target="17" />
+      <module name="sparklight-api.test" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
