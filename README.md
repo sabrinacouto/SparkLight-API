@@ -13,7 +13,7 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
   - [Aparelho](#aparelho)
   - [Usuário](#usuário)
   - [Item](#item)
-  - [Exemplos de JSON](#exemplos-de-json
+  - [Exemplos de JSON](#exemplos-de-json)
 - [Imagens Explicativas](#imagens-explicativas)
   - [Telas da aplicação](#telas-da-aplicacao)
   - [Diagrama de classes](#diagrama-de-classes)
