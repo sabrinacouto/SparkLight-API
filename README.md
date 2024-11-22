@@ -1,12 +1,12 @@
 # SparkLight API ⚡
 
-Este sistema foi criado para facilitar o controle das despesas de energia elétrica, oferecendo recursos para calcular o consumo e os custos de aparelhos elétricos residenciais.
+Este sistema foi criado para facilitar o controle das despesas de energia elétrica, oferecendo recursos para calcular o consumo e os custos de aparelhos elétricos residenciais. Ele possibilita o registro de dispositivos e apresenta estimativas detalhadas com base no tempo de uso e nas especificações técnicas dos aparelhos.  Projetado para ser intuitivo e acessível, o sistema promove hábitos conscientes, contribuindo para um futuro mais sustentável.
 
 ---
 
 ## Índice 📋
-- [Desenvolvedores](#desenvolvedores)
 - [Recursos](#recursos)
+- [Desenvolvedores](#desenvolvedores)
 - [Como Rodar o Projeto](#como-rodar-o-projeto)
 - [Endpoints](#endpoints)
   - [Histórico](#histórico)
@@ -14,6 +14,12 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
   - [Usuário](#usuário)
   - [Item](#item)
   - [Exemplos de JSON](#exemplos-de-json)
+- [Imagens Explicativas](#imagens-explicativas)
+  - [Telas da aplicação](#telas-da-aplicacao)
+  - [Diagrama de classes](#diagrama-de-classes)
+  - [Diagrama Macro](#diagrama-macro)
+- [Vídeo de explicação do funcionamento do software](#video-de-explicação-do-software)
+- [Vídeo Pitch](#video-pitch)
 
 ---
 
@@ -30,9 +36,9 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
 
 ## Desenvolvedores 🚀
 
-- [Sabrina Couto](https://github.com/sabrinacouto) - Backend Developer
-- [Juliana Mo.](https://github.com/julianamo93) - Modelagem de Dados e Cloud
-- [Kevin Nobre](https://github.com/KevinNobre) - Backend e Front
+- [Sabrina Couto](https://github.com/sabrinacouto) - RM552728 - BackEnd Java e QA
+- [Juliana Mo.](https://github.com/julianamo93) - RM554113 - Cloud e Dados
+- [Kevin Nobre](https://github.com/KevinNobre) - RM552590 - Front-end e BackEnd .Net
 
 ## Como Rodar o Projeto 🖥️
 
@@ -48,6 +54,13 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
     spring.datasource.username=SEU_USUARIO
     spring.datasource.password=SUA_SENHA
     ```
+3. Configurar o Projeto no IntelliJ IDEA
+<ul>
+  <li>Selecione a opção "Open" e navegue até o diretório do projeto SparkLight clonado.</li>
+  <li>Em Project Structure garanta que o SDK esteja para o Java 17.</li>
+  <li>Verifique no IntelliJ se a aba do Gradle está presente na barra lateral.</li>
+  <li>Caso o projeto não seja automaticamente reconhecido como Gradle, abra o arquivo build.gradle e aceite a importação do Gradle quando o IntelliJ perguntar.</li>
+</ul>
 
 Agora o servidor estará disponível em `http://localhost:8080`. 🎉
 
@@ -89,7 +102,7 @@ Agora o servidor estará disponível em `http://localhost:8080`. 🎉
 
 ---
 
-### Item 👤
+### Item 👩‍💻
 
 | Método | URL                         | Descrição               |
 |--------|-----------------------------|-------------------------|
@@ -188,9 +201,18 @@ O json do `Usuário` segue o padrão de um cadastro comum.
 - Indica a quantidade de unidades do aparelho associadas a este item.
 -  **Exemplo:** : `3` (O item está associado a três unidades do aparelho indicado pelo aparelhoId).
 
+
+
 #### ⚡ **aparelhoid**   
 - Identificador único do aparelho ao qual o item está relacionado.
 
 #### ⏳ **historicoid**  
 - Identificador único do histórico ao qual o item está associado.
 ---
+
+## Vídeo de explicação do software
+https://youtu.be/kVD9L8fzxC4
+
+## Vídeo Pitch
+
+
