@@ -238,6 +238,7 @@ O json do `Usuário` segue o padrão de um cadastro comum.
 https://youtu.be/kVD9L8fzxC4
 
 ## Vídeo Pitch
+
 https://www.youtube.com/watch?v=0dKvL1Tfhl8
 
 
