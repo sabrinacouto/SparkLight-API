@@ -240,7 +240,9 @@ O json do `Usuário` segue o padrão de um cadastro comum.
 
 ![image](https://github.com/user-attachments/assets/98992142-267c-4d53-a4cf-373d71cb2a44)
 
-Link do Deploy: https://sparklight-webapp-cqhjebazedhagehy.brazilsouth-01.azurewebsites.net/
+## Link do Deploy: 
+
+[https://sparklight-webapp-cqhjebazedhagehy.brazilsouth-01.azurewebsites.net/](https://sparklight-webapp-cqhjebazedhagehy.scm.brazilsouth-01.azurewebsites.net/api/deployments/latest)
 
 
 ## Vídeo de explicação do software
