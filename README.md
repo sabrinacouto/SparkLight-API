@@ -60,6 +60,8 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
 
 ### Diagrama de Classes
 
+![diagrama](https://github.com/user-attachments/assets/03b9756c-3874-4e74-8465-5568ef00b318)
+
 ### Macro do projeto
 
 ![diagramJava](https://media.discordapp.net/attachments/1297737020248031284/1309576636168929422/Diagrama_sem_nome.drawio_1.png?ex=674215c8&is=6740c448&hm=b190aebc56cb6f1306a9f8417b9415d9b22e584ad03f899c9d9f73e10283ed0c&=&format=webp&quality=lossless&width=838&height=438)
