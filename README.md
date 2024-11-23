@@ -46,8 +46,6 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
 - [Juliana Mo.](https://github.com/julianamo93) - RM554113 - Cloud e Dados
 - [Kevin Nobre](https://github.com/KevinNobre) - RM552590 - Front-end e BackEnd .Net
 
-<<<<<<< HEAD
-=======
 ## Imagens Explicativas
 
 
