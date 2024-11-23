@@ -246,6 +246,9 @@ https://youtu.be/kVD9L8fzxC4
 
 ## Vídeo Pitch
 
+![ThumbSpark](https://github.com/user-attachments/assets/ccb87980-04ac-41c2-81f5-36f0a4618cc6)
+
+
 https://www.youtube.com/watch?v=0dKvL1Tfhl8
 
 
