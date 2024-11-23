@@ -234,6 +234,13 @@ O json do `Usuário` segue o padrão de um cadastro comum.
 - Identificador único do histórico ao qual o item está associado.
 ---
 
+## Deploy WebApp
+
+![image](https://github.com/user-attachments/assets/98992142-267c-4d53-a4cf-373d71cb2a44)
+
+Link do Deploy: https://sparklight-webapp-cqhjebazedhagehy.brazilsouth-01.azurewebsites.net/
+
+
 ## Vídeo de explicação do software
 https://youtu.be/kVD9L8fzxC4
 
