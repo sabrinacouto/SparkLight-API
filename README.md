@@ -20,12 +20,6 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
   - [Usuário](#usuário)
   - [Item](#item)
   - [Exemplos de JSON](#exemplos-de-json)
-- [Imagens Explicativas](#imagens-explicativas)
-  - [Telas da aplicação](#telas-da-aplicacao)
-  - [Diagrama de classes](#diagrama-de-classes)
-  - [Diagrama Macro](#diagrama-macro)
-- [Vídeo de explicação do funcionamento do software](#video-de-explicação-do-software)
-- [Vídeo Pitch](#video-pitch)
 
 ---
 
@@ -46,26 +40,6 @@ Este sistema foi criado para facilitar o controle das despesas de energia elétr
 - [Juliana Mo.](https://github.com/julianamo93) - RM554113 - Cloud e Dados
 - [Kevin Nobre](https://github.com/KevinNobre) - RM552590 - Front-end e BackEnd .Net
 
-## Imagens Explicativas
-
-
-### Telas
-
-![image](https://media.discordapp.net/attachments/1297737020248031284/1309577833558839316/Login.png?ex=674216e6&is=6740c566&hm=c12a734c61db18d8bbbe591adefce8c9d7eefa9a4ae00bc9e09c80318a56d412&=&format=webp&quality=lossless&width=323&height=662)
-![image](https://media.discordapp.net/attachments/1297737020248031284/1309577764692692992/Register.png?ex=674216d5&is=6740c555&hm=5a8fab95de03b1da49d5b0707594f11d46d0dd2a4678517d203e9735aea21854&=&format=webp&quality=lossless&width=247&height=662)
-![image](https://media.discordapp.net/attachments/1297737020248031284/1309577872448684113/Home.png?ex=674216ef&is=6740c56f&hm=2642dbf0f18274f765051f087af0df8c87ba8b9b51ad516099c9e442be9dd5ce&=&format=webp&quality=lossless&width=323&height=662)
-![image](https://media.discordapp.net/attachments/1297737020248031284/1309577726096572517/Dicas_1.png?ex=674216cc&is=6740c54c&hm=e160a6b5531bb6d2bbfb376c8be6ea5bda906518d258fe0aa30b182157a6b790&=&format=webp&quality=lossless&width=323&height=662)
-![image](https://media.discordapp.net/attachments/1297737020248031284/1309579031452192778/Consumo.png?ex=67421803&is=6740c683&hm=2ba383a8afd594ddf4c6dcc6c372c7ba0cf44f1519de828e86288a3a08500863&=&format=webp&quality=lossless&width=223&height=661)
-![image](https://media.discordapp.net/attachments/1297737020248031284/1309579031217442896/Consumo_-_Aparelhos.png?ex=67421803&is=6740c683&hm=11125e57b19b9658155f39dc522da8942f41b957a4b997c09bcddd1e2dfbdbd2&=&format=webp&quality=lossless&width=323&height=662)
-
-### Diagrama de Classes
-
-![diagrama](https://github.com/user-attachments/assets/03b9756c-3874-4e74-8465-5568ef00b318)
-
-### Macro do projeto
-
-![diagramJava](https://media.discordapp.net/attachments/1297737020248031284/1309576636168929422/Diagrama_sem_nome.drawio_1.png?ex=674215c8&is=6740c448&hm=b190aebc56cb6f1306a9f8417b9415d9b22e584ad03f899c9d9f73e10283ed0c&=&format=webp&quality=lossless&width=838&height=438)
-  
 ## Como Rodar o Projeto 🖥️
 
 ### Passos
@@ -240,19 +214,6 @@ O json do `Usuário` segue o padrão de um cadastro comum.
 
 ![image](https://github.com/user-attachments/assets/98992142-267c-4d53-a4cf-373d71cb2a44)
 
-## Link do Deploy: 
 
-[https://sparklight-webapp-cqhjebazedhagehy.brazilsouth-01.azurewebsites.net/](https://sparklight-webapp-cqhjebazedhagehy.scm.brazilsouth-01.azurewebsites.net/api/deployments/latest)
-
-
-## Vídeo de explicação do software
-https://youtu.be/kVD9L8fzxC4
-
-## Vídeo Pitch
-
-![ThumbSpark](https://github.com/user-attachments/assets/ccb87980-04ac-41c2-81f5-36f0a4618cc6)
-
-
-https://www.youtube.com/watch?v=0dKvL1Tfhl8
 
 
